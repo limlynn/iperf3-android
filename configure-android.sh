@@ -1,5 +1,4 @@
 #!/bin/bash
-
 export TOOLCHAIN=$PWD/android-toolchain
 mkdir -p $TOOLCHAIN
 API=21
@@ -13,7 +12,7 @@ function build() {
  TARGET=$3
  OUT=out_$ARCH
  $NDK_ROOT/build/tools/make-standalone-toolchain.sh \
-    --toolchain=arm-linux-androideabi-4.9 \
+    --toolchain=aarch64-linux-android21 \
     --arch=$ARCH \
     --install-dir=$TOOLCHAIN \
     --platform=android-$API \
@@ -25,12 +24,10 @@ function build() {
   export CXX=$PREFIX-clang++
   export LINK=$PREFIX-clang++
   gyp --depth=. -Goutput_dir=$OUT
-  make V=1 -j16
+  make V=1 -j16 
 }
 
 function build_arm() {
-  build arm arm-linux-androideabi arm
+  build arm64 aarch64-linux-android21 arm64 
 }
-
 build_arm
-

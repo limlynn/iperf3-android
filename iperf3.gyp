@@ -5,7 +5,7 @@
        'target_name': 'iperf3',
        'type': 'executable',
        'c_flags': 'fPIE',
-       'ldflags': ['-pie',],
+       'ldflags': ['-pie','-frtti','-fexceptions'],
        'sources': [
           './src/cjson.c',
           './src/cjson.h',
